@@ -1,26 +1,22 @@
 package kg.lovz.server.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-
-import java.util.Date;
 
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
 @Getter
-public class RefreshToken {
+@Setter
+public class HomeContent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-
-    @OneToOne
-    User user;
-
-    String refreshToken;
-    Date expirityDate;
+    String header;
+    @Column(columnDefinition = "TEXT")
+    String text;
+    String photoUrl;
+    String photoAltText;
 }
