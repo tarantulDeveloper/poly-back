@@ -8,6 +8,10 @@ import kg.lovz.server.service.HomeContentService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,5 +30,11 @@ public class HomeContentServiceImpl implements HomeContentService {
         homeContent.setPhotoUrl(photoUrl);
         homeContent.setPhotoAltText(request.photoAltText());
         return homeContentRepository.save(homeContent);
+    }
+
+    @Override
+    public Page<HomeContent> getAll(int pageNo, int pageSize, String sortBy) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
+        return homeContentRepository.findAll(pageable);
     }
 }
