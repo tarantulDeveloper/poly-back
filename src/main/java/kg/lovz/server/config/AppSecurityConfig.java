@@ -47,6 +47,7 @@ public class AppSecurityConfig {
         http.csrf().disable()
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(WHITELIST).permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/home-content").permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling().authenticationEntryPoint(authEntryPoint)
                 .and()

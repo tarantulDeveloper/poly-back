@@ -77,14 +77,19 @@ public class JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         } catch (SignatureException e) {
             logger.error("Invalid JWT signature: {}", e.getMessage());
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         } catch (MalformedJwtException e) {
             logger.error("Invalid JWT token: {}", e.getMessage());
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         } catch (ExpiredJwtException e) {
             logger.error("JWT token is expired: {}", e.getMessage());
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         } catch (UnsupportedJwtException e) {
             logger.error("JWT token is unsupported: {}", e.getMessage());
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         } catch (IllegalArgumentException e) {
             logger.error("JWT claims string is empty: {}", e.getMessage());
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         }
 
 

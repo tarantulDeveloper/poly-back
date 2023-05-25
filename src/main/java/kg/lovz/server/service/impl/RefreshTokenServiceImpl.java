@@ -14,6 +14,7 @@ import kg.lovz.server.service.RefreshTokenService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ import java.util.UUID;
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
+@Slf4j
 public class RefreshTokenServiceImpl implements RefreshTokenService {
 
     final RefreshTokenRepository refreshTokenRepository;
@@ -52,6 +54,8 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
 
         User user = refreshToken.getUser();
 
+log.info("Here I am");
+log.info(request.refreshToken());
         if (isRefreshTokenExpired(refreshToken)) {
             refreshTokenRepository.delete(refreshToken);
             throw new RefreshTokenExpiredException();
