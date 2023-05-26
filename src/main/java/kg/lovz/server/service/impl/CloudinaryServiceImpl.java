@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -21,12 +22,11 @@ public class CloudinaryServiceImpl implements CloudinaryService {
     @Override
     public String upload(MultipartFile multipartFile) {
         try {
-            Transformation transformation = new Transformation().quality(50).fetchFormat("auto");
+
+
             return String.valueOf(
                     cloudinary.uploader()
-                            .upload(multipartFile.getBytes(), ObjectUtils.asMap(
-                                    "transformation", transformation.generate()
-                            ))
+                            .upload(multipartFile.getBytes(), ObjectUtils.emptyMap())
                             .get("secure_url")
             );
         } catch (IOException e) {

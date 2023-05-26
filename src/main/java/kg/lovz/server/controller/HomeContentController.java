@@ -34,6 +34,7 @@ public class HomeContentController {
     }
 
     @GetMapping("/{homeContentId}")
+    @SecurityRequirements
     public HomeContent getHomeContentById(@PathVariable("homeContentId") int homeContentId) {
         return homeContentService.getHomeContentById(homeContentId);
     }

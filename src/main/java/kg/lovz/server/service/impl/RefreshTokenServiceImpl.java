@@ -54,8 +54,7 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
 
         User user = refreshToken.getUser();
 
-log.info("Here I am");
-log.info(request.refreshToken());
+
         if (isRefreshTokenExpired(refreshToken)) {
             refreshTokenRepository.delete(refreshToken);
             throw new RefreshTokenExpiredException();
