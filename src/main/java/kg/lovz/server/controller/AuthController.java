@@ -1,5 +1,6 @@
 package kg.lovz.server.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import kg.lovz.server.dto.request.LoginRequest;
 import kg.lovz.server.dto.request.RefreshAccessTokenRequest;
 import kg.lovz.server.dto.response.LoginResponse;
@@ -22,11 +23,13 @@ public class AuthController {
     final RefreshTokenService refreshTokenService;
 
     @PostMapping("/login")
+    @SecurityRequirements
     public LoginResponse login(@RequestBody LoginRequest request) {
         return authService.login(request);
     }
 
     @PostMapping("/refresh-token")
+    @SecurityRequirements
     public LoginResponse refreshToken(@RequestBody RefreshAccessTokenRequest request) {
         return refreshTokenService.generateAccessTokenByRefreshToken(request);
     }

@@ -1,28 +1,24 @@
 package kg.lovz.server.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.LocalDate;
 
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class Feedback {
+public class Appeal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+
     String name;
-    @Column(columnDefinition = "TEXT")
     String text;
-    int rating;
-    @CreationTimestamp
-    LocalDate date;
-    @ManyToOne
-    Clinic clinic;
+    String phone;
 }

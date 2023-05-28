@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -31,7 +32,10 @@ public class CarouselItemServiceImpl implements CarouselItemService {
 
     @Override
     public List<CarouselItem> getAll() {
-        return carouselItemRepository.findAll();
+        return carouselItemRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparingInt(CarouselItem::getId).reversed())
+                .toList();
     }
 
     @Override

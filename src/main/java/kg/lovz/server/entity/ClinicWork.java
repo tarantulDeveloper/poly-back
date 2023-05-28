@@ -5,24 +5,19 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class Feedback {
+public class ClinicWork {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String name;
-    @Column(columnDefinition = "TEXT")
-    String text;
-    int rating;
-    @CreationTimestamp
-    LocalDate date;
-    @ManyToOne
-    Clinic clinic;
+    @ManyToMany(mappedBy="clinicWorks")
+    List<Clinic> clinics = new ArrayList<>();
 }
