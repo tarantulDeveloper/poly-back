@@ -16,9 +16,9 @@
 ***
 
 ## Документация
-[Swagger](http://34.65.179.105:8080/api-docs/swagger-ui/index.html)
+~~[Swagger](http://34.65.179.105:8080/api-docs/swagger-ui/index.html)~~
 ***
 
 ## Сайт
-[lovz.kg](http://34.65.179.105/)
+~~[lovz.kg](http://34.65.179.105/)~~
 ***
